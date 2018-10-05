@@ -20,7 +20,7 @@ const somewhereAroundCapetown = {
 
 const SimpleMap = () =>
   // Important! Always set the container height explicitly
-  <div style={{ height: '100vh', width: '100%' }}>
+  <div style={{ height: '100%', width: '100%' }}>
     <GoogleMapReact
       bootstrapURLKeys={{ key: 'AIzaSyCTKcRP25mN9r3L-KaeysDE62uMneEaY9U' }}
       defaultCenter={somewhereAroundCapetown}
