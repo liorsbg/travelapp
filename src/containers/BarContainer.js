@@ -1,52 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SingleDestinationBar from '../components/SingleDestinationBar'
-import moment from 'moment'
 import TripViewContainer from './TripViewContainer'
-
-const fakeTripInfo = {
-  name: 'Trip to China',
-  tripStartDate: moment(),
-  tripEndDate: moment().add(5, 'days'),
-  numberOfDays: 15,
-}
-
-const fakeData = {
-  destinations: [
-    {
-      name: 'Paris',
-      place_id: 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ',
-      duration: '3 days',
-      days: [
-        {
-          activities: [
-            { name: 'Frog watching' },
-            { name: 'Baguette shopping' },
-          ],
-        },
-      ],
-    },
-    {
-      name: 'Seattle',
-      place_id: 'ChIJVTPokywQkFQRmtVEaUZlJRA',
-      duration: '3 days',
-      days: [
-        {
-          activities: [
-            { name: 'Grunging out' },
-            { name: 'Driving to Vancouver' },
-          ],
-        },
-        {
-          activities: [
-            { name: 'Visiting Microsoft' },
-            { name: 'Watching the ocean' },
-          ],
-        },
-      ],
-    },
-  ],
-}
 
 const fakeNewDay = {
   activities: [{ name: 'farting' }, { name: 'sunbathing' }],
@@ -55,11 +10,21 @@ const fakeNewDay = {
 class BarContainer extends React.Component {
   constructor(props) {
     super(props)
+    console.log(props)
     this.state = {
       destination: null,
-      destinations: fakeData.destinations,
-      tripInfo: fakeTripInfo,
+      destinations: [],
+      trip: null,
     }
+    this.getTrip = props.getTrip.bind(this)
+    console.log({ state: this.state })
+  }
+
+  componentDidMount() {
+    this.getTrip().then(tripInfo => {
+      console.log('Got trip', tripInfo)
+      this.setState(tripInfo)
+    })
   }
   onClickDestination(destination, destinationIndex) {
     this.props.onEnteringTripView(destination.place_id)
@@ -145,6 +110,7 @@ class BarContainer extends React.Component {
 }
 
 BarContainer.propTypes = {
+  getTrip: PropTypes.func,
   onEnteringTripView: PropTypes.func,
   height: PropTypes.any,
 }

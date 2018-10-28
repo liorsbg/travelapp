@@ -7,11 +7,9 @@ import {
 import { ObjectId } from 'bson'
 
 const client = Stitch.initializeDefaultAppClient('travelapp-ewvje')
-
 const db = client
   .getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas')
   .db('dev')
-
 const anonymousCredential = new AnonymousCredential()
 
 const getClient = () =>
@@ -31,4 +29,16 @@ getClient()
     console.error(err)
   })
 
-export { getClient, ObjectId }
+const DUMMY_TRIP_ID = '5bb8a294bc0c7b396d6b8abb'
+
+const getTrip = async (tripId = DUMMY_TRIP_ID) => {
+  let trips = await getClient().then(db =>
+    db
+      .collection('trips')
+      .find({ _id: ObjectId(tripId) }, { limit: 1 })
+      .asArray()
+  )
+  return trips[0]
+}
+
+export { getClient, getTrip, ObjectId }

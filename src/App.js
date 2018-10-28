@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import BarContainer from './containers/BarContainer'
 import MapContainer from './containers/MapContainer'
+import { getTrip } from './db'
 import 'material-components-web/dist/material-components-web.min.css'
 
 const barContainerHeight = 200 // height in pixels
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <BarContainer
+          getTrip={getTrip}
           onEnteringTripView={this.zoomToPlaceId.bind(this)}
           height={barContainerHeight}
         />

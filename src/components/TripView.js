@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 import EditableText from '../containers/EditableText'
 import EditableDate from '../containers/EditableDate'
+import moment from 'moment'
 import { IconButton } from '@rmwc/icon-button'
 import '@material/icon-button/dist/mdc.icon-button.css'
 
@@ -51,7 +52,11 @@ const DestinationCard = ({
         padding: 0,
       }}
     />
-    <h2>{dest.duration}</h2>
+    <h2>
+      {moment
+        .duration(moment(dest.end_date).diff(moment(dest.start_date)))
+        .asDays() + ' days'}
+    </h2>
   </div>
 )
 
@@ -121,24 +126,24 @@ const TripView = ({
       }}
     >
       <EditableText
-        value={tripInfo.name}
+        value={tripInfo ? tripInfo.name : 'Noname'}
         onChange={value => onTitleChange(value)}
       />
-      <InlineString
+      {/* <InlineString
         value={`, ${tripInfo.tripEndDate.diff(
           tripInfo.tripStartDate,
           'days'
         )} Days, `}
-      />
-      <EditableDate
+      /> */}
+      {/* <EditableDate
         value={tripInfo.tripStartDate}
         onChange={date => onDateChange({ tripStartDate: date })}
-      />
-      <InlineString value=" - " />
+      /> */}
+      {/* <InlineString value=" - " />
       <EditableDate
         value={tripInfo.tripEndDate}
         onChange={date => onDateChange({ tripEndDate: date })}
-      />
+      /> */}
     </div>
     <div>
       {destinations.map((dest, destIndex) => (
