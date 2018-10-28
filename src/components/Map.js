@@ -20,7 +20,7 @@ DestMarker.propTypes = {
   text: PropTypes.string,
 }
 
-const SimpleMap = ({ places, center, height }) => {
+const SimpleMap = ({ places, center, height, zoom }) => {
   // Important! Always set the container height explicitly
   return (
     <div style={{ height, width: '100%' }}>
@@ -28,8 +28,9 @@ const SimpleMap = ({ places, center, height }) => {
         bootstrapURLKeys={{
           key: 'AIzaSyCTKcRP25mN9r3L-KaeysDE62uMneEaY9U',
         }}
-        defaultZoom={5}
+        defaultZoom={zoom}
         center={center}
+        zoom={zoom}
       >
         {places.map(place => (
           <DestMarker
@@ -48,6 +49,7 @@ SimpleMap.propTypes = {
   center: PropTypes.any,
   places: PropTypes.any,
   height: PropTypes.any,
+  zoom: PropTypes.number,
 }
 
 export default SimpleMap
