@@ -129,14 +129,19 @@ const TripView = ({
         value={tripInfo ? tripInfo.name : 'Noname'}
         onChange={value => onTitleChange(value)}
       />
-      <InlineString
-        value={`, ${tripInfo.tripEndDate.diff(
-          tripInfo.tripStartDate,
-          'days'
-        )} Days, `}
-      />
+      {tripInfo &&
+        tripInfo.destinations && (
+          <InlineString
+            value={`, ${moment(
+              tripInfo.destinations[tripInfo.destinations.length - 1].end_date
+            ).diff(
+              moment(tripInfo.destinations[0].start_date),
+              'days'
+            )} Days, `}
+          />
+        )}
       <EditableDate
-        value={tripInfo.tripStartDate}
+        value={moment(tripInfo.destinations[0].start_date)}
         onChange={date => onDateChange({ tripStartDate: date })}
       />
       <InlineString value=" - " />
