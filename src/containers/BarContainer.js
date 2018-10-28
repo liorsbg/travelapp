@@ -10,19 +10,16 @@ const fakeNewDay = {
 class BarContainer extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.state = {
       destination: null,
       destinations: [],
       trip: null,
     }
     this.getTrip = props.getTrip.bind(this)
-    console.log({ state: this.state })
   }
 
   componentDidMount() {
     this.getTrip().then(tripInfo => {
-      console.log('Got trip', tripInfo)
       this.setState(tripInfo)
     })
   }

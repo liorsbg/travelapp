@@ -129,21 +129,21 @@ const TripView = ({
         value={tripInfo ? tripInfo.name : 'Noname'}
         onChange={value => onTitleChange(value)}
       />
-      {/* <InlineString
+      <InlineString
         value={`, ${tripInfo.tripEndDate.diff(
           tripInfo.tripStartDate,
           'days'
         )} Days, `}
-      /> */}
-      {/* <EditableDate
+      />
+      <EditableDate
         value={tripInfo.tripStartDate}
         onChange={date => onDateChange({ tripStartDate: date })}
-      /> */}
-      {/* <InlineString value=" - " />
+      />
+      <InlineString value=" - " />
       <EditableDate
         value={tripInfo.tripEndDate}
         onChange={date => onDateChange({ tripEndDate: date })}
-      /> */}
+      />
     </div>
     <div>
       {destinations.map((dest, destIndex) => (
