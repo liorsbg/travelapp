@@ -25,7 +25,7 @@ AddButton.propTypes = {
 }
 
 const formatDate = tripInfo => {
-  if (tripInfo.tripStartDate && tripInfo.tripEndDate) {
+  if (tripInfo && tripInfo.tripStartDate && tripInfo.tripEndDate) {
     return `${tripInfo.tripStartDate.format('MMM Do')} - ${tripInfo.tripEndDate.format('MMM Do')}`
   } else {
     return 'chickens!'
@@ -40,7 +40,7 @@ const TripView = ({ destinations, onClickDestination, onClickAddDestination, hei
         onChange={value => onTitleChange(value)}
       />
       <h3 style={{ margin: 0, display: 'inline' }}>
-        {`, ${tripInfo.numberOfDays} Days, ${formatDate(tripInfo)}`}
+        {`, ${tripInfo ? tripInfo.numberOfDays : 7} Days, ${formatDate(tripInfo)}`}
       </h3>
     </div>
     <div>

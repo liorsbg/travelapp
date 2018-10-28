@@ -1,52 +1,51 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SingleDestinationBar from '../components/SingleDestinationBar'
-import moment from 'moment'
 import TripViewContainer from './TripViewContainer'
 
-const fakeTripInfo = {
-  name: 'Trip to China',
-  tripStartDate: moment(),
-  tripEndDate: moment().add(5, 'days'),
-  numberOfDays: 15
-}
+// const fakeTripInfo = {
+//   name: 'Trip to China',
+//   tripStartDate: moment(),
+//   tripEndDate: moment().add(5, 'days'),
+//   numberOfDays: 15
+// }
 
-const fakeData = {
-  destinations: [
-    {
-      name: 'Paris',
-      place_id: 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ',
-      duration: '3 days',
-      days: [
-        {
-          activities: [
-            { name: 'Frog watching' },
-            { name: 'Baguette shopping' }
-          ]
-        }
-      ]
-    },
-    {
-      name: 'Seattle',
-      place_id: 'ChIJVTPokywQkFQRmtVEaUZlJRA',
-      duration: '3 days',
-      days: [
-        {
-          activities: [
-            { name: 'Grunging out' },
-            { name: 'Driving to Vancouver' }
-          ]
-        },
-        {
-          activities: [
-            { name: 'Visiting Microsoft' },
-            { name: 'Watching the ocean' }
-          ]
-        }
-      ]
-    }
-  ]
-}
+// const fakeData = {
+//   destinations: [
+//     {
+//       name: 'Paris',
+//       place_id: 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ',
+//       duration: '3 days',
+//       days: [
+//         {
+//           activities: [
+//             { name: 'Frog watching' },
+//             { name: 'Baguette shopping' }
+//           ]
+//         }
+//       ]
+//     },
+//     {
+//       name: 'Seattle',
+//       place_id: 'ChIJVTPokywQkFQRmtVEaUZlJRA',
+//       duration: '3 days',
+//       days: [
+//         {
+//           activities: [
+//             { name: 'Grunging out' },
+//             { name: 'Driving to Vancouver' }
+//           ]
+//         },
+//         {
+//           activities: [
+//             { name: 'Visiting Microsoft' },
+//             { name: 'Watching the ocean' }
+//           ]
+//         }
+//       ]
+//     }
+//   ]
+// }
 
 const fakeNewDay = {
   activities: [
