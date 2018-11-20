@@ -107,7 +107,7 @@ InlineString.propTypes = {
 }
 
 const TripView = ({
-  destinations,
+  // destinations,
   onClickDestination,
   onClickAddDestination,
   height,
@@ -117,56 +117,62 @@ const TripView = ({
   onClickDeleteDestination,
 }) => (
   <div style={{ height, width: '100%' }}>
-    <div
-      style={{
-        height: 40,
-        textAlign: 'left',
-        paddingLeft: '30px',
-        paddingTop: '10px',
-      }}
-    >
-      <EditableText
-        value={tripInfo ? tripInfo.name : 'Noname'}
-        onChange={value => onTitleChange(value)}
-      />
-      {tripInfo &&
-        tripInfo.destinations && (
-          <InlineString
-            value={`, ${moment(
-              tripInfo.destinations[tripInfo.destinations.length - 1].end_date
-            ).diff(
-              moment(tripInfo.destinations[0].start_date),
-              'days'
-            )} Days, `}
+    {tripInfo && (
+      <div>
+        <div
+          style={{
+            height: 40,
+            textAlign: 'left',
+            paddingLeft: '30px',
+            paddingTop: '10px',
+          }}
+        >
+          <EditableText
+            value={tripInfo ? tripInfo.name : 'Noname'}
+            onChange={value => onTitleChange(value)}
           />
-        )}
-      <EditableDate
-        value={moment(tripInfo.destinations[0].start_date)}
-        onChange={date => onDateChange({ tripStartDate: date })}
-      />
-      <InlineString value=" - " />
-      <EditableDate
-        value={tripInfo.tripEndDate}
-        onChange={date => onDateChange({ tripEndDate: date })}
-      />
-    </div>
-    <div>
-      {destinations.map((dest, destIndex) => (
-        <DestinationCard
-          key={`${dest.name}-${destIndex}`}
-          dest={dest}
-          height={height - 70}
-          onClick={() => onClickDestination(dest, destIndex)}
-          onClickDeleteDestination={onClickDeleteDestination}
-        />
-      ))}
-      <AddButton onClickAddDestination={onClickAddDestination} />
-    </div>
+          {tripInfo &&
+            tripInfo.destinations && (
+              <InlineString
+                value={`, ${moment(
+                  tripInfo.destinations[tripInfo.destinations.length - 1]
+                    .end_date
+                ).diff(
+                  moment(tripInfo.destinations[0].start_date),
+                  'days'
+                )} Days, `}
+              />
+            )}
+          <EditableDate
+            value={moment(tripInfo.destinations[0].start_date)}
+            onChange={date => onDateChange({ tripStartDate: date })}
+          />
+          <InlineString value=" - " />
+          <EditableDate
+            value={tripInfo.tripEndDate}
+            onChange={date => onDateChange({ tripEndDate: date })}
+          />
+        </div>
+
+        <div>
+          {tripInfo.destinations.map((dest, destIndex) => (
+            <DestinationCard
+              key={`${dest.name}-${destIndex}`}
+              dest={dest}
+              height={height - 70}
+              onClick={() => onClickDestination(dest, destIndex)}
+              onClickDeleteDestination={onClickDeleteDestination}
+            />
+          ))}
+          <AddButton onClickAddDestination={onClickAddDestination} />
+        </div>
+      </div>
+    )}
   </div>
 )
 
 TripView.propTypes = {
-  destinations: PropTypes.any,
+  destinations: PropTypes.any.isRequired,
   onTitleChange: PropTypes.func.isRequired,
   onDateChange: PropTypes.func.isRequired,
   onClickDestination: PropTypes.func.isRequired,

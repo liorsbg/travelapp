@@ -20,7 +20,8 @@ class BarContainer extends React.Component {
 
   componentDidMount() {
     this.getTrip().then(tripInfo => {
-      this.setState(tripInfo)
+      console.log('componenDidMount', tripInfo)
+      this.setState({ tripInfo })
     })
   }
   onClickDestination(destination, destinationIndex) {
@@ -32,9 +33,14 @@ class BarContainer extends React.Component {
     return 6
   }
   onClickAddDay(destinationIndex) {
-    const newDestinations = [...this.state.destinations]
+    const newDestinations = [...this.state.tripInfo.destinations]
     newDestinations[destinationIndex].days.push(fakeNewDay)
-    this.setState({ destinations: newDestinations })
+    this.setState({
+      tripInfo: {
+        ...this.state.tripInfo,
+        destinations: newDestinations,
+      },
+    })
   }
   saveDestination(newPlace) {
     this.setState({ modalDialogOpen: false })

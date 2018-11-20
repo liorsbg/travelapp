@@ -21,6 +21,7 @@ class TripViewContainer extends React.Component {
     this.props.addDestination(newPlace)
   }
   render() {
+    console.log(this.props.tripInfo)
     return (
       <div>
         <TripView
@@ -53,7 +54,7 @@ TripViewContainer.propTypes = {
   onTitleChange: PropTypes.func.isRequired,
   onDateChange: PropTypes.func.isRequired,
   height: PropTypes.any,
-  tripInfo: PropTypes.object,
+  tripInfo: PropTypes.object.isRequired,
 }
 
 export default TripViewContainer

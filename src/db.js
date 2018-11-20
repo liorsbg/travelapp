@@ -38,6 +38,7 @@ const getTrip = async (tripId = DUMMY_TRIP_ID) => {
       .find({ _id: ObjectId(tripId) }, { limit: 1 })
       .asArray()
   )
+  console.log(trips[0])
   return trips[0]
 }
 
