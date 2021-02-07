@@ -28,6 +28,7 @@ class MapContainer extends React.Component {
     this.state = {
       places: [],
       center: somewhereAroundCapetown,
+      zoom: 5,
     }
   }
 
@@ -52,6 +53,7 @@ class MapContainer extends React.Component {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng(),
           },
+          zoom: 10,
         })
       })
     }
@@ -64,6 +66,7 @@ class MapContainer extends React.Component {
           places={this.state.places}
           center={this.state.center}
           height={this.props.height}
+          zoom={this.state.zoom}
         />
       </div>
     )
